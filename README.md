@@ -22,6 +22,7 @@ def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
         frota[nome_navio] = [resultado]
 
     return frota
+    
 #EP2 "faz jogada (código solo)"
 def faz_jogada(tabuleiro, linha, coluna):
     if tabuleiro[linha][coluna] == 1:
@@ -29,7 +30,8 @@ def faz_jogada(tabuleiro, linha, coluna):
     elif tabuleiro[linha][coluna] == 0:
         tabuleiro[linha][coluna] = "-"
     return tabuleiro
-
+    
+#EP2 - Posiciona Frota
 def posiciona_frota(frota):
     grid = [
       [0,0,0,0,0,0,0,0,0,0],
