@@ -1,4 +1,5 @@
 # Dessoft-ep2
+#EP2 "define posicoes"
 def define_posicoes(linha, coluna, orientacao, tamanho):
     resultado = [0]*tamanho
     for i in range(tamanho):
@@ -10,6 +11,7 @@ def define_posicoes(linha, coluna, orientacao, tamanho):
             coluna += 1
     return resultado
 
+#EP2 "preenche frota (preenche frota + define posicoes)"
 def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
     resultado=define_posicoes(linha, coluna, orientacao, tamanho)
     # frota={nome_navio: resultado}
@@ -20,4 +22,11 @@ def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
         frota[nome_navio] = [resultado]
 
     return frota
+#EP2 "faz jogada (código solo)"
+def faz_jogada(tabuleiro, linha, coluna):
+    if tabuleiro[linha][coluna] == 1:
+        tabuleiro[linha][coluna] = "X"
+    elif tabuleiro[linha][coluna] == 0:
+        tabuleiro[linha][coluna] = "-"
+    return tabuleiro
 
