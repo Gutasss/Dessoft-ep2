@@ -53,3 +53,19 @@ def posiciona_frota(frota):
                 linha=linha_coluna[0]
                 grid[linha][coluna]= 1
     return grid
+
+#EP2- Quantas embarcações afundadas?
+def afundados(embarcacao,tabuleiro):
+    nalfragio=0
+    validando=0
+    for navio in embarcacao.values():
+        for localizacao in navio:
+            for local in localizacao:
+                if tabuleiro [local[0]] [local[1]]=='X':
+                    validando=True
+                else:
+                    validando=False
+                    break
+            if validando == True:
+                nalfragio+=1
+    return nalfragio
