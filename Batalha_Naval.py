@@ -69,3 +69,28 @@ def afundados(embarcacao,tabuleiro):
             if validando == True:
                 nalfragio+=1
     return nalfragio
+
+#EP2 - Posição Válida
+def posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    posicao_desejada= define_posicoes(linha, coluna, orientacao, tamanho)
+    retorno=0
+    for posicao in posicao_desejada:
+        if posicao[0] > 9 or posicao[0] <0:
+            return False
+        elif posicao[1] > 9 or posicao[1] <0:
+            return False
+    if frota == {}:
+        return True
+    for posicao in posicao_desejada:
+        for barco in frota.values():
+            for lista_maior_barco in barco :
+                for lista in lista_maior_barco:
+                    if posicao == lista:
+                        retorno= False
+                        return False
+                    else:
+                        retorno=True
+                if retorno == False:
+                    return retorno
+    if retorno ==True:
+        return retorno
