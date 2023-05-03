@@ -1,5 +1,5 @@
 # Dessoft-ep2
-#EP2 "define posicoes"
+#EP2 - Define Posições
 def define_posicoes(linha, coluna, orientacao, tamanho):
     resultado = [0]*tamanho
     for i in range(tamanho):
@@ -11,7 +11,7 @@ def define_posicoes(linha, coluna, orientacao, tamanho):
             coluna += 1
     return resultado
 
-#EP2 "preenche frota (preenche frota + define posicoes)"
+#EP2 - Preenche Frota
 def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
     resultado=define_posicoes(linha, coluna, orientacao, tamanho)
     # frota={nome_navio: resultado}
@@ -23,7 +23,7 @@ def preenche_frota (frota, nome_navio, linha, coluna, orientacao, tamanho):
 
     return frota
     
-#EP2 "faz jogada (código solo)"
+#EP2 - Faz jogada
 def faz_jogada(tabuleiro, linha, coluna):
     if tabuleiro[linha][coluna] == 1:
         tabuleiro[linha][coluna] = "X"
@@ -96,7 +96,7 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
         return retorno
 
 #EP2 - Posicionando Frota
-frota={}
+frota = {}
 frotas = {
     "porta-aviões":{'quantidade':1,'tamanho':4},
     "navio-tanque":{'quantidade':2,'tamanho':3},
@@ -104,20 +104,20 @@ frotas = {
     "submarino":{'quantidade':4,'tamanho':1},
 }
 
-for navio,informacoes in frotas.items():
+for navio, informacoes in frotas.items():
     for contador in range(0,informacoes['quantidade']):
-        validando=False
+        validando = False
         print('Insira as informações referentes ao navio {0} que possui tamanho {1}'.format(navio,informacoes['tamanho']))
-        while validando!= True:
+        while validando != True:
             linha = int(input('Linha: '))
             coluna = int(input('Coluna: '))
-            if navio !='submarino':
+            if navio != 'submarino':
                 orientacao = int(input('Orientação- Para ser vertical digite 1. Para ser horizontal digite 2: '))
             if orientacao == 1:
-                orientacao='vertical'
+                orientacao= 'vertical'
             if orientacao == 2:
-                orientacao='horizontal'
-            validando=posicao_valida(frota, linha, coluna, orientacao, informacoes['tamanho'])
+                orientacao= 'horizontal'
+            validando = posicao_valida(frota, linha, coluna, orientacao, informacoes['tamanho'])
             if validando == False:
                 print('Esta posição não está válida!')
                 print('Insira as informações referentes ao navio {0} que possui tamanho {1}'.format(navio,informacoes['tamanho']))
