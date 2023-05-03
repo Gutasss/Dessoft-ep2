@@ -94,3 +94,33 @@ def posicao_valida(frota, linha, coluna, orientacao, tamanho):
                     return retorno
     if retorno ==True:
         return retorno
+
+#EP2 - Posicionando Frota
+frota={}
+frotas = {
+    "porta-aviões":{'quantidade':1,'tamanho':4},
+    "navio-tanque":{'quantidade':2,'tamanho':3},
+    "contratorpedeiro":{'quantidade':3,'tamanho':2},
+    "submarino":{'quantidade':4,'tamanho':1},
+}
+
+for navio,informacoes in frotas.items():
+    for contador in range(0,informacoes['quantidade']):
+        validando=False
+        print('Insira as informações referentes ao navio {0} que possui tamanho {1}'.format(navio,informacoes['tamanho']))
+        while validando!= True:
+            linha = int(input('Linha: '))
+            coluna = int(input('Coluna: '))
+            if navio !='submarino':
+                orientacao = int(input('Orientação- Para ser vertical digite 1. Para ser horizontal digite 2: '))
+            if orientacao == 1:
+                orientacao='vertical'
+            if orientacao == 2:
+                orientacao='horizontal'
+            validando=posicao_valida(frota, linha, coluna, orientacao, informacoes['tamanho'])
+            if validando == False:
+                print('Esta posição não está válida!')
+                print('Insira as informações referentes ao navio {0} que possui tamanho {1}'.format(navio,informacoes['tamanho']))
+        frota=preenche_frota(frota, navio, linha, coluna, orientacao, informacoes['tamanho'])
+        
+        
