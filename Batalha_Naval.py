@@ -122,5 +122,5 @@ for navio,informacoes in frotas.items():
                 print('Esta posição não está válida!')
                 print('Insira as informações referentes ao navio {0} que possui tamanho {1}'.format(navio,informacoes['tamanho']))
         frota=preenche_frota(frota, navio, linha, coluna, orientacao, informacoes['tamanho'])
-        
-        
+
+print(frota)
