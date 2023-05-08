@@ -1,5 +1,7 @@
 # Dessoft-ep2
 #EP2 - Define Posições
+import random
+
 def define_posicoes(linha, coluna, orientacao, tamanho):
     resultado = [0]*tamanho
     for i in range(tamanho):
@@ -123,9 +125,13 @@ for navio, informacoes in frotas.items():
                 print('Insira as informações referentes ao navio {0} que possui tamanho {1}'.format(navio,informacoes['tamanho']))
         frota=preenche_frota(frota, navio, linha, coluna, orientacao, informacoes['tamanho'])
 
-print(frota)
 
-#EP2 - Jogadas do Jogador
+
+
+#EP 2 - Jogadas do jogador e jogadas do oponente
+
+
+
 
 def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
     texto = ''
@@ -164,7 +170,7 @@ tabuleiro_oponente=posiciona_frota(frota_oponente)
 tabuleiro_jogador=posiciona_frota(frota)
 
 posicoes=[]
-
+posicoes_oponente=[]
 jogando=True 
 while jogando:
     escolhas=True
@@ -185,13 +191,30 @@ while jogando:
         if posicao not in posicoes:
             posicoes.append(posicao)
             tabuleiro_oponente=faz_jogada(tabuleiro_oponente,ataque_linha,ataque_coluna)
+            jogadas_oponente=True
+            while jogadas_oponente:
+                ataque_linha_oponente=random.randint(0,9)
+                ataque_coluna_oponente=random.randint(0,9)
+                posicao_op=[ataque_linha_oponente,ataque_coluna_oponente]
+                if posicao_op not in posicoes_oponente:
+                    print('Seu oponente está atacando na linha {0} e coluna {1}'.format(ataque_linha_oponente,ataque_coluna_oponente))
+                    posicoes_oponente.append(posicao_op)
+                    tabuleiro_jogador=faz_jogada(tabuleiro_jogador,ataque_linha_oponente,ataque_coluna_oponente)
+                    jogadas_oponente=False
+                    escolhas=False
+                    rodando=afundados(frota_oponente,tabuleiro_oponente)
+                    rodando_oponente=afundados(frota,tabuleiro_jogador)
         else:
             print('A posição linha {0} e coluna {1} já foi informada anteriormente!'.format(ataque_linha,ataque_coluna))
             escolhas=False
-        rodando=afundados(frota_oponente,tabuleiro_oponente)
-        print(rodando)
-        if rodando == 10:
-            jogando=False
-            escolhas=False
-            print('Parabéns! Você derrubou todos os navios do seu oponente!')
-
+            
+    if rodando == 10:
+        jogando=False
+        escolhas=False
+        print('Parabéns! Você derrubou todos os navios do seu oponente!')
+        break
+    if rodando_oponente == 10:
+        jogando=False
+        escolhas=False
+        print('Xi! O oponente derrubou toda a sua frota =(')
+        break
